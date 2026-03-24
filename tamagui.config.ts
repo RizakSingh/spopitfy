@@ -1,25 +1,27 @@
-import { defaultConfig } from '@tamagui/config/v5'
-import { createTamagui ,createTokens} from 'tamagui'
+import { config } from "@tamagui/config/v3";
+import { createTamagui } from "tamagui";
 
-const tokens = createTokens({
-  size: {
-    sm: 8,
-    md: 16,
-    lg: 24,
+
+const customTokens = {
+  ...config.tokens,
+  color: {
+    ...config.tokens.color,
+    propifyRed: '#ff1a1a',
+    propifyRedDark: '#cc0000',
+    propifyMuted: '#cc9999',
+    propifySubtle: '#bb8c8c',
+    propifyFaint: '#663333',
+    propifyBg: '#110000',
+    propifyBgDark: '#0a0000',
   },
-  space: {
-    sm: 8,
-    md: 16,
-    lg: 24,
-  },
-})
-export const tamaguiConfig = createTamagui({defaultConfig, tokens})
+}
+const tamaguiConfig = createTamagui({ ...config,tokens: customTokens });
 
-export type Conf = typeof tamaguiConfig
+export type Conf = typeof tamaguiConfig;
 
-declare module 'tamagui' {
+declare module "tamagui" {
   interface TamaguiCustomConfig extends Conf {}
 }
 
-
-export default tamaguiConfig
+export default tamaguiConfig;
+export { tamaguiConfig };
