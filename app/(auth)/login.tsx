@@ -201,7 +201,7 @@ export default function AuthScreen() {
 
                 {/* Google */}
                 <YStack marginHorizontal="$4">
-                  <GoogleButton>
+                  <GoogleButton onPress={handleGoogleLogin}>
                     <XStack alignItems="center" gap="$2">
                       <Text color="#ff4444" fontSize={18} fontWeight="900">G</Text>
                       <Text color="#cc8888" fontSize={14} fontWeight="600">Continue with Google</Text>
