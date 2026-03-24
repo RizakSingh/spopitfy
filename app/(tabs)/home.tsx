@@ -1,29 +1,26 @@
-import { YStack, Text, Button } from "tamagui";
-
-export default function Home() {
+import { YStack, Text, Button } from 'tamagui'
+import { router } from 'expo-router'
+import AppButton from '../../src/components/AppButton'
+export default function HomeScreen() {
   return (
     <YStack
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
-      }}
+      flex={1}
+      justifyContent="center"
+      alignItems="center"
     >
-      <Text style={{ fontSize: 28, fontWeight: "700" }}>
-        Home 🚀
-      </Text>
-
-      <Text style={{ marginTop: 10, color: "#666" }}>
-        Welcome to your app
+      <Text fontSize="$6" color="#ff1a1a">
+        🔥 Your Streak: 0
       </Text>
 
       <Button
-        style={{ marginTop: 20 }}
-        onPress={() => alert("Working 🔥")}
+        onPress={() => router.push('/(tabs)/camera')}
+        style={{
+          marginTop: 20,
+          backgroundColor: '#ff1a1a',
+        }}
       >
-      <Text>  Test Button</Text>
+       <AppButton><Text>Add Proof</Text></AppButton>
       </Button>
     </YStack>
-  );
+  )
 }
