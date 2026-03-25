@@ -4,6 +4,7 @@ import { signup } from '../../src/services/auth'
 import { createUserDoc } from '../../src/services/firestore'
 import { router } from 'expo-router'
 
+
 export default function SignupScreen() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

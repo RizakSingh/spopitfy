@@ -8,6 +8,9 @@ import { createUserDoc } from '../../src/services/firestore'
 import { router } from 'expo-router'
 import AppInput from '../../src/components/AppInput'
 import AppButton from '../../src/components/AppButton'
+import { useGoogleAuth } from '../../src/services/googleAuth'
+
+
 
 const Card = styled(YStack, {
   backgroundColor: '#110000',
@@ -49,6 +52,20 @@ export default function AuthScreen() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
+  
+  const { handleGoogleLogin } = useGoogleAuth()
+  const handleGooglePress = async () => {
+    try {
+      setLoading(true)
+      setError('')
+      const res = await handleGoogleLogin()
+      router.replace('/(tabs)/home')
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
   const handleAuth = async () => {
     try {
       setLoading(true)
