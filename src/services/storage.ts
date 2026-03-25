@@ -1,15 +1,25 @@
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { app } from './firebase'
-
-const storage = getStorage(app)
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { storage } from './firebase'
 
 export const uploadImage = async (uri: string, userId: string) => {
-  const response = await fetch(uri)
-  const blob = await response.blob()
+  try {
+    console.log("📸 Uploading image:", uri)
 
-  const storageRef = ref(storage, `proofs/${userId}/${Date.now()}.jpg`)
+    const response = await fetch(uri)
+    const blob = await response.blob()
 
-  await uploadBytes(storageRef, blob)
+    const fileName = `proofs/${userId}/${Date.now()}.jpg`
+    const storageRef = ref(storage, fileName)
 
-  return await getDownloadURL(storageRef)
+    await uploadBytes(storageRef, blob)
+
+    const downloadURL = await getDownloadURL(storageRef)
+
+    console.log("✅ Uploaded URL:", downloadURL)
+
+    return downloadURL
+  } catch (error) {
+    console.log("❌ Upload error:", error)
+    throw error
+  }
 }

@@ -67,14 +67,17 @@ useEffect(() => {
   }
 
   const takePicture = async () => {
-    if (!cameraRef.current) return
-    const photo = await cameraRef.current.takePictureAsync()
-    router.push({
-      pathname: '/(tabs)/preview',
-      params: { uri: photo.uri },
-    })
-  }
+  if (!cameraRef.current) return
 
+  const photo = await cameraRef.current.takePictureAsync()
+
+  console.log("📸 Photo URI:", photo.uri)
+
+  router.push({
+    pathname: '/(tabs)/preview',
+    params: { uri: photo.uri },
+  })
+}
   return (
     <YStack flex={1} backgroundColor="#000000">
       <SafeAreaView style={{ flex: 1 }}>

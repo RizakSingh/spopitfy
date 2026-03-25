@@ -231,7 +231,8 @@ export default function AuthScreen() {
                   <Text color="#663333" fontSize={13}>
                     {isSignup ? 'Already have an account?' : "Don't have an account?"}
                   </Text>
-                  <Text
+                  <Text 
+                  marginTop="$1.5"
                     color="#ff4444"
                     fontSize={13}
                     fontWeight="700"
